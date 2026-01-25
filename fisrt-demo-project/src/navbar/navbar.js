@@ -21,11 +21,6 @@ export default class Navbar
     console.log(
       "from componentDidMount",
     );
-    this.setState(
-      {
-        name: "Ahmed",
-      },
-    );
   }
 
   componentDidUpdate() {
@@ -37,6 +32,10 @@ export default class Navbar
   // componentWillUnmount() { //clean up method
   //   console.log("from componentWillUnmount");
   // }
+ changeName=() => {
+  this.setState({name: "ahmed"})
+ }
+
 
   render() {
     console.log(
@@ -45,18 +44,16 @@ export default class Navbar
     return (
       <>
         <h1>
-          My
-          Name
-          is{" "}
+          My Name is{" "}
           {
-            this
-              .state
-              .name
+            this.state.name
           }
         </h1>
-        <p>
-          Hello
-        </p>
+        <button onClick={()=> {
+      this.changeName()
+        }}>
+          Change Name
+        </button>
       </>
     );
   }
