@@ -7,20 +7,18 @@ import About from './about/about';
 import Contact from './contact/contact';
 import Products from './products/products';
 
-
 function App() {
-  
-
   return (
   <>
   <Header />
-
     <Router>
-      <Route path="/" component={<Home />} />
-      <Route path="/about" component={<About />} />
-      <Route path="/contact" component={<Contact />} /> 
-      <Route path="/products" component={<Products />} /> 
-    </Router>
+      <Switch>
+      <Route path="/" exact component={<Home />} />
+      <Route path="/about" exact component={<About />} />
+      <Route path="/contact" exact component={<Contact />} /> 
+      <Route path="/products" exact component={<Products />} /> 
+      </Switch>
+       </Router>
       <Footer />
   </>
   )
