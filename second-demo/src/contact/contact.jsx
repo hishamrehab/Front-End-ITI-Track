@@ -1,8 +1,17 @@
-import React from 'react'
+import { useHistory } from "react-router-dom";
 
-const Contact = () => {
+const Contact = (props) => {
+    const history = useHistory();  
+    const redirectToAbout=() => {
+        // props.history.push("/about");
+    history.push("/about");
+    }
+
     return (
-        <div>Contact Us</div>
+        <div>
+        <h1>Contact Us</h1>   
+     <button className='btn btn-primary' onClick={() => redirectToAbout()}>Go To About Us</button>
+        </div>
     )
 }
 
