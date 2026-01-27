@@ -11,6 +11,7 @@ import ProductDetails from './products/productDetails/productDetails';
 function App() {
   return (
   <>
+  <div className='container'>
     <Router>
       <Header />
       <Switch>
@@ -22,6 +23,7 @@ function App() {
       </Switch>
        </Router>
       <Footer />
+      </div>
   </>
   )
 }
