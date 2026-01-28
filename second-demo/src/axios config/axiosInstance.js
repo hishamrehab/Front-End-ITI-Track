@@ -8,12 +8,6 @@ export default axiosInstance;
 
 
 
-
-
-
-
-
-
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
     function (config) {
@@ -25,14 +19,6 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error);
     },
 );
-
-
-
-
-
-
-
-
 
 
 
