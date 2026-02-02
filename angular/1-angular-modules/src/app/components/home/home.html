@@ -1,0 +1,11 @@
+<!-- Interplation -->
+<h1>{{myStore.name}}</h1>
+<!-- <img src="{{myStore.imageUrl}}"/> -->
+
+<!-- property binfing -->
+ <img [src]="myStore.imageUrl"/>
+
+ <h3 *ngFor="let branch of myStore.branches">
+    {{branch}}
+ </h3>
+

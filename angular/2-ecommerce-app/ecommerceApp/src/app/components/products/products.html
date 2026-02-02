@@ -1,0 +1,68 @@
+
+<h1>Total Order price : {{totalOrderPrice}}</h1>
+<!-- <h2>Selected Cat is : {{selectedCatId}}</h2> -->
+
+
+
+
+<div class="mb-3">
+  <label for="" class="form-label">
+    City
+  </label>
+   <select class="from-select from-select-lg" name="" id="" [(ngModel)]="selectedCatId"> 
+   <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+  </select>
+</div>
+
+<!-- <button (click)="change()" >
+  Change Category
+</button> -->
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+ <ng-container
+     *ngFor="let prd of products;let i=index; let c=count;trackBy:trackItem"
+ >
+    <div
+    class="col" 
+    [class.d-none]="prd.catId !== selectedCatId"
+     *ngIf="prd.quantity !=0"
+     [ngStyle]="{border:(prd.quantity == 1)? '1px solid red' : '1px solid green'}"
+    >
+      <div class="card">
+        <img [src]="prd.imgUrl" class="card-img-top" alt="...">
+        <div class="card-body"
+        [ngClass]="(prd.quantity ==1) ? 'text-denger': ''"
+        [style.background-color]="(prd.quantity === 0)? 'yellow' : 'white'" 
+        >
+          <h5 class="card-title">
+            {{i+1}}  {{prd.name}}
+          </h5>
+          <p class="card-text">
+          Price: {{prd.price}}        
+          </p>
+        <!-- <p class="card-text" *ngIf="prd.quantity !==1";else lastItem>
+          Quantity: {{prd.quantity}}        
+          </p>
+          <ng-template #lastItem>
+            <p>
+            Quantity: Last Item    
+            </p>
+          </ng-template> -->
+  
+           <div [ngSwitch]="prd.quantity">
+            <p *ngSwitchCase="1">Quantity : Last Item </p>
+            <p *ngSwitchCase="2">Quantity : Last Two Items </p>
+            <p *ngSwitchDefault="">Quantity : {{prd.quantity}}</p>
+           </div>
+        
+          <!-- <p class="card-text">{{c}}</p> -->
+          <!-- template variable , refrence -->
+          <input type="number" #countInput  />
+          <button class="btn btn-success" (click)="buy(countInput.value , prd.price)">buy</button>
+        </div>
+      </div>
+    </div>
+ </ng-container>
+ 
+
+</div>

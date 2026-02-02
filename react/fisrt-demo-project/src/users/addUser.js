@@ -39,8 +39,7 @@ export default function AddUser() {
                 </label>
                 <input
                     type="text"
-                    className="form-control"
-                    placeholder="Enter your name"
+                    className={`form-control ${errors.nameError ? "border-danger" : ""}`} placeholder="Enter your name"
                     value={user.name}
                     name="name"
                     onChange={(e) => { handleChange(e) }}
