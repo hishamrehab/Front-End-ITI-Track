@@ -25,7 +25,7 @@
    
  
  
- @for(prd of products ; track prd.id) {
+ @for(prd of products ; track prd.id ; let i=$index) {
  <div
     class="col" 
     [class.d-none]="prd.catId !== selectedCatId"
@@ -66,6 +66,8 @@
         </div>
       </div>
     </div>
+ }@empty {
+  <h1>No Product Found</h1>
  }
  
 
