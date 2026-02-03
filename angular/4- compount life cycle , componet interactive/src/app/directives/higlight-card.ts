@@ -1,15 +1,17 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appHiglightCard]',
 })
-export class HiglightCard {
+export class HiglightCard implements OnChanges {
   
  @Input() externalColor:string = "black";
  @Input('appHiglightCard') defaultColor: string = "red";
 
   constructor(private ele:ElementRef) { 
     console.log(ele);
+  }
+  ngOnChanges() {
     this.ele.nativeElement.style.backgroundColor = this.defaultColor;
   }
 
