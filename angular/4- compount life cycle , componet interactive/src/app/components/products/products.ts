@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Iproduct } from '../../models/iproduct';
 import { CommonModule } from '@angular/common';
 import { Icategory } from '../../models/icategory';
@@ -13,13 +13,15 @@ import { SquarePipe } from '../../pipes/square-pipe';
   styleUrl: './products.css',
 })
 
-  export class Products {
+  export class Products implements OnChanges{
   products:Iproduct[]
   totalOrderPrice:number = 0;
-  selectedCatId: number = 0;
-  categories: Icategory[];
   myDate: Date = new Date();
   num : number = 4;
+  filteredProducts: Iproduct[] = [];
+ 
+
+  @Input() recievedCategoryId:number = 0;
 
   
   constructor() {
@@ -77,12 +79,11 @@ import { SquarePipe } from '../../pipes/square-pipe';
     }
     ]
 
-  this.categories =[
-    {id : 1 , name : "laptops"},
-    {id : 2 , name : "mobiles"},
-    {id : 3 , name : "tablets"}
-  ]
+  this.filteredProducts = this.products;
  }
+  ngOnChanges() {
+    this.filterProducts();
+  }
 
   buy(count: string , price: number) {
   this.totalOrderPrice += +count * price;
@@ -90,11 +91,19 @@ import { SquarePipe } from '../../pipes/square-pipe';
   }
 
   change() {
-  this.selectedCatId = +this.selectedCatId;
+  //  this.selectedCatId = +this.selectedCatId;
   }
 
   trackItem(index: number, item: Iproduct) {
   return item.id;
+  }
+
+  filterProducts() {
+    if(this.recievedCategoryId === 0) {
+      this.filteredProducts = this.products;
+    }else {
+      this.filteredProducts = this.products.filter((prod) => prod.catId === this.recievedCategoryId)
+    }
   }
 
 }
