@@ -1,0 +1,44 @@
+<div class="row row-cols-1 row-cols-md-4 g-4">
+ @for(prd of filteredProducts ; track prd.id ; let i=$index) {
+ <div
+    class="col" 
+    [class.d-none]="prd.catId !== selectedCatId" 
+    >
+      <div class="card" appHiglightCard="gray" externalColor="green">
+        <img [src]="prd.imgUrl" class="card-img-top" alt="...">
+        <div class="card-body"
+        [ngClass]="(prd.quantity ==1) ? 'text-denger': ''"
+        [style.background-color]="(prd.quantity === 0)? 'yellow' : 'white'" 
+        >
+          <h5 class="card-title">
+            {{i+1}}  {{prd.name}}
+          </h5>
+          <p class="card-text">
+           Price: {{prd.price | currency : "EUR " : "symbol"}}        
+          </p>
+    
+
+           @switch (prd.quantity) {
+            @case(1) {
+              <p>Quantity : Last Item</p>
+              break;
+            }
+            @case(2) {
+              <p>Quantity : Last Two Items</p>
+            }
+            @default {
+              <p>Quantity : {{prd.quantity}}</p>
+            }
+           }
+          <input type="number" #countInput  />
+          <button class="btn btn-success" (click)="buy(countInput.value , prd.price)">buy</button>
+        </div>
+      </div>
+    </div>
+ }@empty {
+  <h1>No Product Found</h1>
+ }
+</div>
+
+<!-- <h2>{{ num | square:3 }}</h2>
+<h2>{{myDate | date : 'shortDate'}}</h2> -->
