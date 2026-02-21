@@ -26,12 +26,16 @@
             @case(2) {
               <p>Quantity : Last Two Items</p>
             }
+            
             @default {
               <p>Quantity : {{prd.quantity}}</p>
             }
            }
-          <input type="number" #countInput  />
-          <button class="btn btn-success" (click)="buy(countInput.value , prd.price)">buy</button>
+
+           <!-- <button class="btn btn-success" (click)="navigateToDetails(prd.id)">Details</button> -->
+           <button class="btn btn-success" [routerLink]="['/Details', prd.id]">Details</button>
+          <!-- <input type="number" #countInput  /> -->
+          <!-- <button class="btn btn-success" (click)="buy(countInput.value , prd.price)">buy</button> -->
         </div>
       </div>
     </div>

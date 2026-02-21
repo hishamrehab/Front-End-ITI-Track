@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { HiglightCard } from '../../directives/higlight-card';
 import { SquarePipe } from '../../pipes/square-pipe';
 import {  StaticProductsService } from '../../../services/static-products';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule,FormsModule , HiglightCard , SquarePipe],
+  imports: [CommonModule, FormsModule, HiglightCard, SquarePipe, RouterLink],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
@@ -26,9 +27,12 @@ import {  StaticProductsService } from '../../../services/static-products';
  @Output() onTotalPriceChanged : EventEmitter<number>  
 
   @Input() recievedCategoryId:number = 0;
+selectedCatId: any;
 
   
-  constructor(private _StaticProductsService: StaticProductsService) {
+  constructor(private _StaticProductsService: StaticProductsService , 
+    private _Router: Router
+  ) {
     this.products = this._StaticProductsService.getAllProducts();
 
     this.filteredProducts = this.products;
@@ -57,6 +61,11 @@ import {  StaticProductsService } from '../../../services/static-products';
 
   trackItem(index: number, item: Iproduct) {
   return item.id;
+  }
+
+  navigateToDetails(id:number) {
+      //  this._Router.navigateByUrl(`/Details/${id}`);
+      this._Router.navigate(["/Details" , id]);
   }
 
 }
